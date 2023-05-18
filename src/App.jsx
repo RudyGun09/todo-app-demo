@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import Todos from './components/Todos';  // Lalukan Import
-=======
+
 
 function App() {
   const [todos, setTodos] = useState([
@@ -20,27 +20,29 @@ function App() {
       title: 'Study React with Ninja Ken',
       completed: false,
     },
+
   ])
 
   console.log(todos)
+// Definisikan function toggleCompleted di sini
+   const toggleCompleted= (todoId) => {
+    const updatedTodos = todos.map(todo=>{
+      if (todo.id === todoId) {
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
+    setTodos(updatedTodos)
+ }
+return (
+<div style={styles.container}>
+<h1 style={styles.title}>My Todo List</h1>
 
-  return (
-
-    
-    <div style={styles.container}>
-      <h1 style={styles.title}>My Todo List</h1>
-
-{/*Berikan data komponen Todos */}
-<Todos todos={todos} /> 
-    <div>
-      <h1>My Todo List</h1>
-       {/* Gunakan method map di sini */}
-       {todos.map((todo)=> {
-        return<p key={todo.id}>{todo.title}</p>
-       })}
-
-    </div>
-  )
+<Todos todos={todos}  
+//Teruskan toggleComplated ke Todos
+toggleCompleted={toggleCompleted}/> 
+</div>
+)}
 
 const styles = {
   container: {
